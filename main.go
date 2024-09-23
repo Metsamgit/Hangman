@@ -42,7 +42,8 @@ func main() {
 		} else {
 			fmt.Println("Incorrect!", i, "attempts left")
 			i--
+			fmt.Println("Enter the word: ")
+			fmt.Scanln(&test)
 		}
-		continue
 	}
 }
