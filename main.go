@@ -43,7 +43,6 @@ func main() {
 			RandomLetters = append(RandomLetters, r)
 		}
 	}
-
 	word := make([]rune, len(RandomWord))
 	for i := range word {
 		word[i] = '_'
