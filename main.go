@@ -1,15 +1,33 @@
 package main
 
 import (
-    "fmt"
-    "io/ioutil"
+	"bufio"
+	"fmt"
+	"math/rand"
+	"os"
+	"time"
 )
 
-func play() {
-	data, err := ioutil.ReadFile("test.txt")
-    if err != nil {
-        fmt.Println(err)
-    }
+func main() {
+	file, err := os.Open("test.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer file.Close()
 
-    fmt.Println(string(data)) 
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	randomWord := lines[rand.Intn(len(lines))]
+	fmt.Println(randomWord)
 }
