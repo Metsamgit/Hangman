@@ -36,11 +36,13 @@ func main() {
 	fmt.Println("Enter the word: ")
 	fmt.Scanln(&test)
 	for i > 0 {
-		if test == RandomWord {
+		if test == word {
 			fmt.Println("Correct!")
+			break
 		} else {
 			fmt.Println("Incorrect!", i, "attempts left")
 			i--
 		}
+		continue
 	}
 }
