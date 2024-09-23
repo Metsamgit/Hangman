@@ -9,12 +9,11 @@ import (
 )
 
 func main() {
-	file, err := os.Open("test.txt")
+	file, err := os.Open("words.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	defer file.Close()
 
 	var lines []string
 	scanner := bufio.NewScanner(file)
@@ -28,6 +27,20 @@ func main() {
 	}
 
 	rand.Seed(time.Now().UnixNano())
-	randomWord := lines[rand.Intn(len(lines))]
-	fmt.Println(randomWord)
+	RandomWord := lines[rand.Intn(len(lines))]
+
+	word := RandomWord
+	fmt.Println(word)
+	var i int = 9
+	var test string
+	fmt.Println("Enter the word: ")
+	fmt.Scanln(&test)
+	for i > 0 {
+		if test == RandomWord {
+			fmt.Println("Correct!")
+		} else {
+			fmt.Println("Incorrect!", i, "attempts left")
+			i--
+		}
+	}
 }
