@@ -29,14 +29,36 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	RandomWord := lines[rand.Intn(len(lines))]
 
-	word := RandomWord
-	fmt.Println(word)
-	var i int = 9
+	var RandomLetters []int
+	for len(RandomLetters) < 3 {
+		r := rand.Intn(len(RandomWord))
+		alreadyChosen := false
+		for _, v := range RandomLetters {
+			if v == r {
+				alreadyChosen = true
+				break
+			}
+		}
+		if !alreadyChosen {
+			RandomLetters = append(RandomLetters, r)
+		}
+	}
+
+	word := make([]rune, len(RandomWord))
+	for i := range word {
+		word[i] = '_'
+	}
+	for _, v := range RandomLetters {
+		word[v] = rune(RandomWord[v])
+	}
+	fmt.Println("Word to guess:", string(word))
+
+	var i int = 10
 	var test string
 	fmt.Println("Enter the word: ")
 	fmt.Scanln(&test)
 	for i > 0 {
-		if test == word {
+		if test == RandomWord {
 			fmt.Println("Correct!")
 			break
 		} else {
